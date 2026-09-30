@@ -2,8 +2,12 @@
 resource appPlan 'Microsoft.Web/serverfarms@2022-03-01' = {
   name: 'taro-app-plan'
   location: 'japanwest'
+  kind: 'linux' // Linuxであることを明示
   sku: {
-    name: 'F1' // ここが無料枠（スペック）の指定！
+    name: 'F1'
+  }
+  properties: {
+    reserved: true // Linuxプランの場合はここをtrueにする必要があります
   }
 }
 
@@ -11,7 +15,11 @@ resource appPlan 'Microsoft.Web/serverfarms@2022-03-01' = {
 resource myApp 'Microsoft.Web/sites@2022-03-01' = {
   name: 'taro-webapp-name'
   location: 'japanwest'
+  kind: 'app,linux' // ここもLinuxであることを明示
   properties: {
-    serverFarmId: appPlan.id // 上で作ったスペックと紐付け
+    serverFarmId: appPlan.id
+    siteConfig: {
+      linuxFxVersion: 'NODE|20-lts' // Node.jsを使うことをAzureに教える
+    }
   }
 }
