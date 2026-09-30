@@ -10,7 +10,7 @@ resource appPlan 'Microsoft.Web/serverfarms@2022-03-01' = {
 // 2. Webサーバー本体の定義
 resource myApp 'Microsoft.Web/sites@2022-03-01' = {
   name: 'taro-webapp-name'
-  location: 'japaneast'
+  location: 'japanwest'
   properties: {
     serverFarmId: appPlan.id // 上で作ったスペックと紐付け
   }
