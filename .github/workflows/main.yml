@@ -12,9 +12,9 @@ jobs:
         uses: azure/arm-deploy@v2
         with:
           resourceGroupName: 'taro-rg-handson-cicd'
-          template: ./main.bicep
+          template: ./azure/main.bicep
       - name: Run Quality Check (Test)
-        run: node test.js  # さっき作った test.js を実行せよ！
+        run: node azure/test.js  # さっき作った test.js を実行せよ！
       - name: Deploy to App Service
         uses: azure/webapps-deploy@v3
         with:
