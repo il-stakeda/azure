@@ -11,4 +11,4 @@ jobs:
       - name: Deploy to App Service
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'taro-webapp-cicd2'
+          app-name: 'taro-webapp-cicd'
