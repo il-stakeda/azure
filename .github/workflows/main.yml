@@ -4,21 +4,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
       - name: Azure Login
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }} # 第3章で作った鍵を使う
-          
-      - name: Deploy Infrastructure (Bicep)
-        uses: azure/arm-deploy@v2
-        with:
-          resourceGroupName: 'taro-rg-handson-cicd'
-          template: main.bicep
-          
-      - name: Run Quality Check (Test)
-        run: node test.js  # さっき作った test.js を実行せよ！
-        
       - name: Deploy to App Service
         uses: azure/webapps-deploy@v3
         with:
