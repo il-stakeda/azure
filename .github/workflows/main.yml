@@ -4,6 +4,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Run Test (検品実行)
+        run: node test.js
+
       - name: Azure Login
         uses: azure/login@v2
         with:
