@@ -11,6 +11,19 @@ jobs:
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }} # 第3章で作った鍵を使う
+      
+      # --- ここから追記 ---
+      - name: Get secret from Key Vault
+        uses: azure/get-keyvault-secrets@v1
+        with:
+          keyvault: "taro-kv-handson" # 作成したKey Vault名
+          secrets: "taro-PASSWORD"    # 作成したシークレット名
+        id: kv-step
+
+      - name: Check Secret
+        run: echo "金庫から取り出した値は ${{ steps.kv-step.outputs.taro-PASSWORD }} です"
+      # --- ここまで追記 ---
+      
       - name: Deploy Infrastructure (Bicep)
         uses: azure/arm-deploy@v2
         with:
