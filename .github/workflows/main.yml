@@ -15,7 +15,7 @@ jobs:
       - name: Get secret from Key Vault
         uses: azure/get-keyvault-secrets@v1
         with:
-          keyvault: "taro-kv-handson" # 作成したKey Vault名
+          keyvault: "taro-kv-handson2" # 作成したKey Vault名
           secrets: "taro-PASSWORD"    # 作成したシークレット名
         id: kv-step
 
